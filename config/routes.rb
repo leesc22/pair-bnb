@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  post "/users" => "users#create"
+  resources :users, only: [:create, :show, :edit, :update]
 
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   get "/sign_up" => "clearance/users#new", as: "sign_up"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root 'clearance/sessions#new'
+  root 'users#show'
 end
