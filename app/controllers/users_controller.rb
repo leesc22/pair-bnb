@@ -11,6 +11,29 @@ class UsersController < Clearance::UsersController
     end
   end
 
+  def show
+    if params[:id].nil?
+      @user = current_user
+    else
+      @user = User.find(params[:id])
+    end
+  end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = User.find(params[:id])
+    # something
+
+    if @user.save
+      # do something
+    else
+      # do something else
+    end
+  end
+
   private
 
   def user_params
