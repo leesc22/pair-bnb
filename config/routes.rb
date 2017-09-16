@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get "/sign_up" => "clearance/users#new", as: "sign_up"
   # End of clearance default routes
 
+  resources :listings
+
   # Set up root
   root 'users#show'
 
