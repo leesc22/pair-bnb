@@ -7,8 +7,10 @@
 					<li><%= link_to 'Profile', current_user %></li>
 					<li><%= link_to 'Sign out', sign_out_path, method: :delete %></li>
 				<% else %>
-					<li><%= link_to 'Sign up', sign_up_path %></li>
-				  <li><%= link_to 'Sign in', sign_in_path %></li>
+					<% if Clearance.configuration.allow_sign_up? %>
+					<li><%= link_to t(".sign_up"), sign_up_path %></li>
+					<% end %>
+				  <li><%= link_to t(".sign_in"), sign_in_path %></li>
 				<% end %>					
 			</ul>
 		</nav>	

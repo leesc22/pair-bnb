@@ -1,14 +1,17 @@
-<div class="text-field">
-  <%= form.label :name %>
-  <%= form.text_field :name %>
+<div class="text-field input-group form-group">
+  <%#= form.label :name %>
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <%= form.text_field :name, placeholder: 'Name', required: true, class: 'form-control' %>
 </div>
 
-<div class="text-field">
-  <%= form.label :email %>
-  <%= form.text_field :email, type: 'email' %>
+<div class="text-field input-group form-group">
+  <%#= form.label :email %>
+  <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+  <%= form.text_field :email, type: 'email', placeholder: 'Email', required: true, class: 'form-control' %>
 </div>
 
-<div class="password-field">
-  <%= form.label :password %>
-  <%= form.password_field :password %>
+<div class="password-field input-group form-group">
+  <%#= form.label :password %>
+  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+  <%= form.password_field :password, placeholder: 'Password', required: true, class: 'form-control' %>
 </div>
