@@ -15,6 +15,10 @@
     </div>
 
     <div class="other-links">
+      <%= link_to "Sign in with Facebook", "/auth/facebook" %>
+      <!-- /auth/facebook?display=popup -->
+      <!-- /auth/facebook?scope=email -->
+
       <%= link_to t(".sign_in"), sign_in_path %>
     </div>
   <% end %>
