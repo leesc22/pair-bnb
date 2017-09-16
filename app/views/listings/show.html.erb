@@ -1,6 +1,8 @@
 <h1>This is listings/show page</h1>
 
-<%= link_to 'Edit Listing', edit_listing_path %>
+<% if @listing.user == current_user %>
+	<%= link_to 'Edit Listing', edit_listing_path %>
+<% end %>
 <br>
 
 <%= @listing.title %>
@@ -8,4 +10,6 @@
 <%= @listing.price_per_night %>
 
 <br>
-<%= link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% if @listing.user == current_user %>
+	<%= link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
