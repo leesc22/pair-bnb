@@ -26,7 +26,7 @@ class ListingsController < ApplicationController
 
 	def update
 		@listing = Listing.find(params[:id])
-		if @listng.save
+		if current_user.listings.find(params[:id]).update(listing_params)
 			redirect_to @listing
 		else
 			render 'edit'

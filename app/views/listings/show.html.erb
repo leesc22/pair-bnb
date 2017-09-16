@@ -1,5 +1,11 @@
 <h1>This is listings/show page</h1>
 
+<%= link_to 'Edit Listing', edit_listing_path %>
+<br>
+
 <%= @listing.title %>
 <%= @listing.address %>
 <%= @listing.price_per_night %>
+
+<br>
+<%= link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' } %>
