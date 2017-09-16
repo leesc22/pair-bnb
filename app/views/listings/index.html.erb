@@ -1,11 +1,17 @@
-<h1>This is listings/index page</h1>
-
-<% @listings.each do |listing| %>
-	<%= link_to listing_path(listing), target: "_blank" do %>
-		<div>
-			<%= listing.title %>
-			<%= listing.address %>
-			<%= listing.price_per_night %>
-		</div>
-	<% end %>
-<% end %>
+<div class="container listing-feed">
+	<div class="row">
+		<% @listings.each do |listing| %>
+			<%= link_to listing_path(listing), target: "_blank" do %>
+				<div class="col-sm-6 col-md-4">
+					<div class="thumbnail">
+						<img src="" alt="">
+						<div class="caption">
+							<h3>RM<%= listing.price_per_night %>  <%= listing.title %></h3>
+							<p><%= listing.address %></p>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>
