@@ -3,7 +3,9 @@
 		<!-- Avatar image -->
 	
 		<h1>Hey, I'm <%= @user.name %>!</h1>
-		<div><%= link_to 'Edit Profile', edit_user_path %></div>
+		<% if @user == current_user %>
+			<div><%= link_to 'Edit Profile', edit_user_path %></div>
+		<% end %>
 	</div>
 
 	<div class="row">
