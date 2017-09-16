@@ -1,0 +1,9 @@
+<h1>This is listings/index page</h1>
+
+<% @listings.each do |listing| %>
+	<div>
+		<%= listing.title %>
+		<%= listing.address %>
+		<%= listing.price_per_night %>
+	</div>
+<% end %>
