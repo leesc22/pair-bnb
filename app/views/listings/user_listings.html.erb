@@ -1,0 +1,12 @@
+<h4><%= link_to @user.name, user_path %></h4>
+
+<h4><%= @user.listings.count %> listings</h4>
+
+<% @user.listings.each do |listing| %>
+	<%= link_to listing_path(listing), target: "_blank" do %>
+		<div>
+			<%= listing.price_per_night %>
+			<%= listing.title %>
+		</div>
+	<% end %>
+<% end %>

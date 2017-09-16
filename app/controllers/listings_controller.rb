@@ -1,3 +1,4 @@
+
 class ListingsController < ApplicationController
 	def index
 		@listings = Listing.all
@@ -37,6 +38,10 @@ class ListingsController < ApplicationController
 		@listing = Listing.find(params[:id])
 		@listing.destroy
 		redirect_to listings_path
+	end
+
+	def user_listings
+		@user = User.find(params[:id])
 	end
 
 	private
