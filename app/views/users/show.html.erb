@@ -1,18 +1,29 @@
-<!-- Avatar image -->
+<div class="container-fluid">
+	<div class="row text-center">
+		<!-- Avatar image -->
+	
+		<h1>Hey, I'm <%= @user.name %>!</h1>
+		<div><%= link_to 'Edit Profile', edit_user_path %></div>
+	</div>
 
-<h1>Hey, I'm <%= @user.name %>!</h1>
-
-<!-- Display user/:id/listings -->
-<div>
-	<% @user.listings.first(3).each do |listing| %>
-		<%= link_to listing_path(listing), target: "_blank" do %>
+	<div class="row">
+		<div class="col-lg-3 col-md-4 hide-sm">
+			<!-- Display user/:id/listings -->
 			<div>
-				<%= listing.title %>
+				<% user_listings = @user.listings %>
+				<h2 class="text-left">Listings <small>(<%= user_listings.count %>)</small></h2>
+				<ul class="list-group">
+					<% user_listings.first(3).each do |listing| %>
+						<li class="list-group-item"><%= link_to listing_path(listing), target: "_blank" do %><%= listing.title %><% end %></li>
+					<% end %>
+				</ul>
 			</div>
-		<% end %>
-	<% end %>
+			<%= link_to 'View all listings', user_listings_path %>
+		</div>
+
+		<div class="col-lg-9 col-md-8 col-sm-12">
+			<!-- Display user/:id/reviews -->
+			<h2 class="text-left">Reviews <small>(<%= 0 %>)</small></h2>
+		</div>
+	</div>
 </div>
-<%= link_to 'View all listings', user_listings_path %>
-
-
-<!-- Display user/:id/reviews -->

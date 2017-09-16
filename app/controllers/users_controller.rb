@@ -25,12 +25,11 @@ class UsersController < Clearance::UsersController
 
   def update
     @user = User.find(params[:id])
-    # something
 
-    if @user.save
-      # do something
+    if @user.update(user_params)
+      redirect_to @user
     else
-      # do something else
+      render 'edit'
     end
   end
 
