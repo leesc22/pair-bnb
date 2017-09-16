@@ -1,0 +1,21 @@
+<h1>This is listings/new page</h1>
+
+<div id="" class="">
+	<!-- Display error messages if any -->
+	<% if @listing.errors.any? %>
+		<ul>
+			<% @listing.errors.full_messages.each do |message| %>
+				<li><%= message%></li>
+			<% end %>
+		</ul>
+
+	<% end %>
+
+  <%= form_for @listing do |form| %>
+    <%= render partial: '/listings/form', object: form %>
+
+    <div class="submit-field">
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>

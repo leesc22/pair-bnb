@@ -19,8 +19,10 @@ Rails.application.routes.draw do
   get "/sign_up" => "clearance/users#new", as: "sign_up"
   # End of clearance default routes
 
+  resources :listings
+
   # Set up root
-  root 'users#show'
+  root 'listings#index'
 
   # Redirect user from Facebook login
   get '/auth/:provider/callback' => 'sessions#create_from_omniauth'
