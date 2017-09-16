@@ -1,1 +1,18 @@
-<h1>This is users/show page</h1>
+<!-- Avatar image -->
+
+<h1>Hey, I'm <%= @user.name %>!</h1>
+
+<!-- Display user/:id/listings -->
+<div>
+	<% @user.listings.first(3).each do |listing| %>
+		<%= link_to listing_path(listing), target: "_blank" do %>
+			<div>
+				<%= listing.title %>
+			</div>
+		<% end %>
+	<% end %>
+</div>
+<%= link_to 'View all listings', user_listings_path %>
+
+
+<!-- Display user/:id/reviews -->
