@@ -2,12 +2,6 @@
   <h2><%= t(".title") %></h2>
 
   <%= form_for @user do |form| %>
-    <div class="text-field">
-      <%= form.label :name %>
-      <%= form.text_field :name %>
-    </div>
-
-
     <%= render partial: '/users/form', object: form %>
 
     <div class="submit-field">
