@@ -4,7 +4,7 @@ class Listing < ApplicationRecord
 
 	def self.search(search)
 		if search
-			where("title LIKE :search OR address LIKE :search", search: "%#{search}%")
+			where("title ILIKE :search OR address ILIKE :search", search: "%#{search}%")
 		else
 			all
 		end
