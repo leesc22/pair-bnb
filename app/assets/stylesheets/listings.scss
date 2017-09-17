@@ -5,10 +5,23 @@
 		width: 100%;
 		display: block;
 	}
-	h3 {
+	.listings-item-title {
 		font-size: 15px;
 		font-weight: 700;
 	}
+}
+
+.listing-title {
+	font-size: 36px;
+	font-weight: 700;
+}
+.listing-address {
+	font-size: 17px;
+	font-weight: 300;
+}
+.listing-price {
+	font-size: 22px;
+	font-weight: 700;
 }
 
 .new-listing-form {

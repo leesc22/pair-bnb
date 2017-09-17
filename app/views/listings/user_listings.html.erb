@@ -5,7 +5,7 @@
 <% @user.listings.each do |listing| %>
 	<%= link_to listing_path(listing), target: "_blank" do %>
 		<div>
-			<%= listing.price_per_night %>
+			RM<%= number_with_precision(listing.price_per_night, precision: 2) %>
 			<%= listing.title %>
 		</div>
 	<% end %>

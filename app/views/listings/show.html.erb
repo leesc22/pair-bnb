@@ -1,15 +1,29 @@
-<h1>This is listings/show page</h1>
+<div class="container">
+	<div class="col-lg-7">	
+		<% if @listing.user == current_user %>
+			<%= link_to 'Edit Listing', edit_listing_path %>
+		<% end %>
+		<br>
 
-<% if @listing.user == current_user %>
-	<%= link_to 'Edit Listing', edit_listing_path %>
-<% end %>
-<br>
+		<div class="listing-title">
+			<%= @listing.title %>
+		</div>
+		
+		<div class="listing-address">
+			<%= @listing.address %> 
+			<%= @listing.city %> <%= @listing.postcode %>
+			<%= @listing.state %> <%= @listing.country %> 
+		</div>
+		
+		<div class="">
+			<span>RM</span>
+			<span class="listing-price"><%= number_with_precision(@listing.price_per_night, precision: 2) %></span>
+			<span> per night</span>
+		</div>
 
-<%= @listing.title %>
-<%= @listing.address %>
-<%= @listing.price_per_night %>
-
-<br>
-<% if @listing.user == current_user %>
-	<%= link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
+		<br>
+		<% if @listing.user == current_user %>
+			<%= link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' } %>
+		<% end %>
+	</div>
+</div>

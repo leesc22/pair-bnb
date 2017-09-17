@@ -6,8 +6,8 @@
 					<div class="thumbnail">
 						<img src="" alt="">
 						<div class="caption">
-							<h3>RM<%= listing.price_per_night %>  <%= listing.title %></h3>
-							<p><%= listing.address %></p>
+							<span class="listings-item-title">RM<%= number_with_precision(listing.price_per_night, precision: 2) %>  <%= listing.title %></span><br>
+							<span><%= listing.address %></span>
 						</div>
 					</div>
 				</div>
