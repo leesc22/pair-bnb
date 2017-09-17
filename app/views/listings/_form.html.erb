@@ -1,19 +1,97 @@
-<div class="">
-  <%= form.hidden_field :user_id %>
+<!-- Title -->
+<div class="text-field form-group">
+  <%= form.label :title, class: 'col-sm-3 control-label' %>
+  <div class="col-sm-9">
+	  <%= form.text_field :title, required: true, class: 'form-control' %>
+  </div>
 </div>
 
-<div class="text-field">
-  <%= form.label :title %>
-  <%= form.text_field :title %>
+<!-- Address -->
+<div class="text-field form-group">
+  <%= form.label :address, class: 'col-sm-3 control-label' %>
+  <div class="col-sm-9">
+	  <%= form.text_field :address, required: true, class: 'form-control' %>
+  </div>
 </div>
 
-<div class="text-field">
-  <%= form.label :address %>
-  <%= form.text_field :address %>
-</div>
-
-<div class="">
-  <%= form.label :price_per_night %>
-  <%= form.number_field :price_per_night, value: (number_with_precision(form.object.price_per_night, precision: 2) || 0) %>
+<!-- Price per night -->
+<div class="form-group">
+  <%= form.label :price_per_night, class: 'col-sm-3 control-label' %>
+  <div class="col-sm-9">
+	  <%= form.number_field :price_per_night, value: (number_with_precision(form.object.price_per_night, precision: 2) || 0), required: true, class: 'form-control' %>
+  </div>
   <!-- value: "%.2f" -->
+</div>
+
+<!-- Room type -->
+<div class="form-group">
+  <%= form.label :room_type, class: 'col-sm-3 control-label' %>
+  <div class="col-sm-9">
+  	<%= form.select :room_type, options_for_select(['Entire place', 'Private room', 'Shared room'], 'Private room'), {}, { class: 'form-control' } %>
+  </div>
+</div>
+
+
+<!-- Smoking allowed -->
+<div class="field form-group">
+  <%= form.label :smoking_allowed, class: 'col-sm-3 control-label' %>
+  <div class="btn-group col-sm-9" data-toggle="buttons-radio">
+		<%= form.label :smoking_allowed, class: 'btn btn-default' do %>
+			<%= form.radio_button :smoking_allowed, true %>
+			Yes
+		<% end %>
+
+		<%= form.label :smoking_allowed, class: 'btn btn-default' do %>
+			<%= form.radio_button :smoking_allowed, false %>
+			No 
+		<% end %>
+  </div>
+</div>
+
+<!-- Pets allowed -->
+<div class="field form-group">
+  <%= form.label :pets_allowed, class: 'col-sm-3 control-label' %>
+  <div class="btn-group col-sm-9" data-toggle="buttons-radio">
+		<%= form.label :pets_allowed, class: 'btn btn-default' do %>
+			<%= form.radio_button :pets_allowed, true %>
+			Yes
+		<% end %>
+
+		<%= form.label :pets_allowed, class: 'btn btn-default' do %>
+			<%= form.radio_button :pets_allowed, false %>
+			No 
+		<% end %>
+  </div>
+</div>
+
+<!-- Wifi -->
+<div class="field form-group">
+  <%= form.label :wifi, class: 'col-sm-3 control-label' %>
+  <div class="btn-group col-sm-9" data-toggle="buttons-radio">
+		<%= form.label :wifi, class: 'btn btn-default' do %>
+			<%= form.radio_button :wifi, true %>
+			Yes
+		<% end %>
+
+		<%= form.label :wifi, class: 'btn btn-default' do %>
+			<%= form.radio_button :wifi, false %>
+			No 
+		<% end %>
+  </div>
+</div>
+
+<!-- Pool -->
+<div class="field form-group">
+  <%= form.label :pool, class: 'col-sm-3 control-label' %>
+  <div class="btn-group col-sm-9" data-toggle="buttons-radio">
+		<%= form.label :pool, class: 'btn btn-default' do %>
+			<%= form.radio_button :pool, true %>
+			Yes
+		<% end %>
+
+		<%= form.label :pool, class: 'btn btn-default' do %>
+			<%= form.radio_button :pool, false %>
+			No 
+		<% end %>
+  </div>
 </div>

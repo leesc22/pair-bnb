@@ -13,6 +13,7 @@ class ListingsController < ApplicationController
 	end
 
 	def create
+		puts listing_params
 		@listing = current_user.listings.new(listing_params)
 		if @listing.save
 			redirect_to @listing
@@ -47,6 +48,6 @@ class ListingsController < ApplicationController
 	private
 
 	def listing_params
-		params.require(:listing).permit(:title, :address, :price_per_night)
+		params.require(:listing).permit(:title, :address, :price_per_night, :room_type, :smoking_allowed, :pets_allowed, :wifi, :pool)
 	end
 end

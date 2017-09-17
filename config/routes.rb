@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   # Redirect user from Facebook login
   get '/auth/:provider/callback' => 'sessions#create_from_omniauth'
   
-  resources :listings, except: [:index]
+  resources :listings
   get "/users/:id/listings" => "listings#user_listings", as: "user_listings"
 
   # Set up root

@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20170916021858) do
     t.string "state"
     t.string "country"
     t.string "room_type"
-    t.string "bedroom_count"
-    t.string "bathroom_count"
+    t.integer "bedroom_count"
+    t.integer "bathroom_count"
     t.decimal "price_per_night", precision: 5, scale: 2
     t.boolean "smoking_allowed"
     t.boolean "pets_allowed"
