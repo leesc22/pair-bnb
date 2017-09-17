@@ -10,7 +10,25 @@
 <div class="text-field form-group">
   <%= form.label :address, class: 'col-sm-3 control-label' %>
   <div class="col-sm-9">
-	  <%= form.text_field :address, required: true, class: 'form-control' %>
+  	<div class="nested-row nested-col col-sm-12">
+		  <%= form.text_field :address, placeholder: 'Address', required: true, class: 'form-control' %>
+  	</div>
+	  <div class="nested-row">
+	  	<div class="nested-col nested-col-left col-sm-9">
+			  <%= form.text_field :city, placeholder: 'City', required: true, class: 'form-control' %>
+	  	</div>
+	  	<div class="nested-col nested-col-right col-sm-3">
+			  <%= form.text_field :postcode, placeholder: 'Postcode', required: true, class: 'form-control' %>
+	  	</div>
+	  </div>
+	  <div class="nested-row">
+	  	<div class="nested-col nested-col-left col-sm-7">
+			  <%= form.text_field :state, placeholder: 'State', required: true, class: 'form-control' %>
+	  	</div>
+	  	<div class="nested-col nested-col-right col-sm-5">
+			  <%= form.text_field :country, placeholder: 'Country', required: true, class: 'form-control' %>
+	  	</div>
+	  </div>
   </div>
 </div>
 
