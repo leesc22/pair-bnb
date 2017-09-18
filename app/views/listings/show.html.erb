@@ -5,20 +5,29 @@
 		<% end %>
 		<br>
 
-		<div class="listing-title">
-			<%= @listing.title %>
+		<div class="row">
+			<div class="listing-title">
+				<%= @listing.title %>
+			</div>
 		</div>
 		
-		<div class="listing-address">
-			<%= @listing.address %> 
-			<%= @listing.city %> <%= @listing.postcode %>
-			<%= @listing.state %> <%= @listing.country %> 
+		<div class="row">
+			<div class="listing-address">
+				<%= @listing.address %> 
+				<%= @listing.city %> <%= @listing.postcode %>
+				<%= @listing.state %> <%= @listing.country %> 
+			</div>
 		</div>
 		
-		<div class="">
+		<div class="row">
 			<span>RM</span>
 			<span class="listing-price"><%= number_with_precision(@listing.price_per_night, precision: 2) %></span>
 			<span> per night</span>
+		</div>
+
+		<div class="row">
+			<% host = @listing.user %>
+			<div class="listing-host"><%= link_to user_path(host) do %><%= host.name %><% end %></div>
 		</div>
 
 		<br>
