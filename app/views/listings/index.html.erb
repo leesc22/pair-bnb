@@ -20,8 +20,10 @@
 	</div>
 
 	<ul class="pager">
-		<li class="<%= 'active' if @current_page == 1 %>"><%= link_to 'First', controller: "listings", page: 1 %></li>
-		<li>...</li>
+		<% if @current_page != 1 %>
+			<li class="<%= 'active' if @current_page == 1 %>"><%= link_to 'First', controller: "listings", page: 1 %></li>
+			<li>...</li>
+		<% end %>
 		<% if @current_page > 1 %>
 			<li class="<%= 'active' if @current_page == @current_page - 1 %>"><%= link_to @current_page - 1, controller: "listings", page: @current_page - 1 %></li>
 		<% end %>
@@ -29,7 +31,9 @@
 		<% if @current_page < @pages + 1 %>
 			<li class="<%= 'active' if @current_page == @current_page + 1 %>"><%= link_to @current_page + 1, controller: "listings", page: @current_page + 1 %></li>
 		<% end %>
-		<li>...</li>
-		<li class="<%= 'active' if @current_page == @pages + 1 %>"><%= link_to 'Last', controller: "listings", page: @pages + 1 %></li>
+		<% if @current_page != @pages + 1 %>
+			<li>...</li>
+			<li class="<%= 'active' if @current_page == @pages + 1 %>"><%= link_to 'Last', controller: "listings", page: @pages + 1 %></li>
+		<% end %>
 	</ul>
 </div>
