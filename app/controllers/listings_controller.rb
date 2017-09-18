@@ -1,7 +1,15 @@
 
 class ListingsController < ApplicationController
 	def index
-		@listings = Listing.search(params[:search])
+		if params[:page].nil? || params[:page].empty?
+			@current_page = 1
+		else
+			@current_page = params[:page].to_i
+		end
+		offset = (@current_page -  1) * 10
+		seach_results = Listing.search(params[:search]).order(created_at: :desc)
+		@pages = seach_results.count.div 10 + 1
+		@listings = seach_results.limit(10).offset(offset)
 	end
 
 	def show

@@ -1,17 +1,35 @@
 <div class="container listing-feed">
 	<div class="row">
-		<% @listings.each do |listing| %>
-			<%= link_to listing_path(listing), target: "_blank" do %>
-				<div class="col-sm-6 col-md-4">
-					<div class="thumbnail">
-						<img src="" alt="">
-						<div class="caption">
-							<span class="listings-item-title">RM<%= number_with_precision(listing.price_per_night, precision: 2) %>  <%= listing.title %></span><br>
-							<span><%= listing.address %></span>
+		<% @listings.each_slice(2) do |row| %>
+			<div class="row">			
+				<% row.each do |listing| %>
+					<%= link_to listing_path(listing), target: "_blank" do %>
+						<div class="col-sm-12 col-md-6">
+							<div class="thumbnail">
+								<img src="" alt="">
+								<div class="caption">
+									<span class="listings-item-title">RM<%= number_with_precision(listing.price_per_night, precision: 2) %>  <%= listing.title %></span><br>
+									<span><%= listing.address %></span>
+								</div>
+							</div>
 						</div>
-					</div>
-				</div>
-			<% end %>
+					<% end %>
+				<% end %>
+			</div>
 		<% end %>
 	</div>
+
+	<ul class="pager">
+		<li class="<%= 'active' if @current_page == 1 %>"><%= link_to 'First', controller: "listings", page: 1 %></li>
+		<li>...</li>
+		<% if @current_page > 1 %>
+			<li class="<%= 'active' if @current_page == @current_page - 1 %>"><%= link_to @current_page - 1, controller: "listings", page: @current_page - 1 %></li>
+		<% end %>
+		<li class="<%= 'active' if @current_page == @current_page %>"><%= link_to @current_page, controller: "listings", page: @current_page %></li>
+		<% if @current_page < @pages + 1 %>
+			<li class="<%= 'active' if @current_page == @current_page + 1 %>"><%= link_to @current_page + 1, controller: "listings", page: @current_page + 1 %></li>
+		<% end %>
+		<li>...</li>
+		<li class="<%= 'active' if @current_page == @pages + 1 %>"><%= link_to 'Last', controller: "listings", page: @pages + 1 %></li>
+	</ul>
 </div>

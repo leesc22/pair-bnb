@@ -9,6 +9,10 @@
 		font-size: 15px;
 		font-weight: 700;
 	}
+	.active {
+		font-weight: 700;
+		font-size: 1.3em;
+	}
 }
 
 .listing-title {
@@ -21,6 +25,10 @@
 }
 .listing-price {
 	font-size: 22px;
+	font-weight: 700;
+}
+.listing-host {
+	font-size: 28px;
 	font-weight: 700;
 }
 
