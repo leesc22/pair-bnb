@@ -1,7 +1,7 @@
 
 class ListingsController < ApplicationController
 	def index
-		@listings = Listing.search(params[:search])
+		@listings = Listing.search(params[:search]).order(created_at: :desc)
 	end
 
 	def show
