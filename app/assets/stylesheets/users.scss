@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
@@ -19,3 +20,20 @@
   margin: 0 auto;
 }
 >>>>>>> Stashed changes
+=======
+.edit-profile {
+	width: 66.67%;
+	margin: 0 auto;
+	.panel-heading {
+		font-weight: bold;
+	}
+}
+
+.sign-up {
+	h2 {
+	  color: $gray-light;
+	}
+	width: 300px;
+	margin: 0 auto;
+}
+>>>>>>> master

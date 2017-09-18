@@ -1,0 +1,17 @@
+<div class="container listing-feed">
+	<div class="row">
+		<% @listings.each do |listing| %>
+			<%= link_to listing_path(listing), target: "_blank" do %>
+				<div class="col-sm-6 col-md-4">
+					<div class="thumbnail">
+						<img src="" alt="">
+						<div class="caption">
+							<span class="listings-item-title">RM<%= number_with_precision(listing.price_per_night, precision: 2) %>  <%= listing.title %></span><br>
+							<span><%= listing.address %></span>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>

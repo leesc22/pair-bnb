@@ -1,30 +1,3 @@
-<<<<<<< Updated upstream
-<div id="clearance" class="sign-up">
-  <h2><%= t(".title") %></h2>
-
-  <%= form_for @user do |form| %>
-    <div class="text-field">
-      <%= form.label :name %>
-      <%= form.text_field :name %>
-    </div>
-
-
-    <%= render partial: '/users/form', object: form %>
-
-    <div class="submit-field">
-      <%= form.submit %>
-    </div>
-
-    <div class="other-links">
-      <%= link_to "Sign in with Facebook", "/auth/facebook" %>
-      <!-- /auth/facebook?display=popup -->
-      <!-- /auth/facebook?scope=email -->
-
-      <%= link_to t(".sign_in"), sign_in_path %>
-    </div>
-  <% end %>
-</div>
-=======
 <body class="bg1">
   <div id="clearance" class="sign-up well text-center vertical-align">
     <h2><%= t(".title") %></h2>
@@ -44,4 +17,4 @@
     <% end %>
   </div>
 </body>
->>>>>>> Stashed changes
+

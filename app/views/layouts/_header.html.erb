@@ -1,0 +1,33 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+	<div class="container">
+		<%= link_to "PairBnB", root_path, class: "logo" %>
+		<nav>
+			<!-- Searchbar -->
+			<%= form_tag listings_path, method: 'get', class: 'navbar-form navbar-left' do %>
+				<div class="input-group">
+					<%= text_field_tag :search, params[:search], placeholder: 'Search for ...', class: 'form-control' %>
+					<span class="input-group-btn"><%= submit_tag "Go!", name: nil, class: 'btn btn-default' %></span>
+				</div>
+			<% end %>
+
+			<ul class="nav navbar-nav navbar-right">
+				<% if signed_in? %>
+					<li><%= link_to 'Become a Host', new_listing_path %></li>
+					<li><%= link_to 'Profile', current_user %></li>
+					<li><%= link_to 'Sign out', sign_out_path, method: :delete %></li>
+				<% else %>
+					<% if Clearance.configuration.allow_sign_up? %>
+					<li><%= link_to t(".sign_up"), sign_up_path %></li>
+					<% end %>
+				  <li><%= link_to t(".sign_in"), sign_in_path %></li>
+				<% end %>					
+			</ul>
+		</nav>	
+
+		<div id="flash">
+		  <% flash.each do |key, value| %>
+		    <div class="flash <%= key %>"><%= value %></div>
+		  <% end %>
+		</div>
+	</div>
+</header>

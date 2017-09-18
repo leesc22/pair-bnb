@@ -1,0 +1,29 @@
+<div class="container">
+	<div class="col-lg-7">	
+		<% if @listing.user == current_user %>
+			<%= link_to 'Edit Listing', edit_listing_path %>
+		<% end %>
+		<br>
+
+		<div class="listing-title">
+			<%= @listing.title %>
+		</div>
+		
+		<div class="listing-address">
+			<%= @listing.address %> 
+			<%= @listing.city %> <%= @listing.postcode %>
+			<%= @listing.state %> <%= @listing.country %> 
+		</div>
+		
+		<div class="">
+			<span>RM</span>
+			<span class="listing-price"><%= number_with_precision(@listing.price_per_night, precision: 2) %></span>
+			<span> per night</span>
+		</div>
+
+		<br>
+		<% if @listing.user == current_user %>
+			<%= link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' } %>
+		<% end %>
+	</div>
+</div>
