@@ -1,6 +1,11 @@
-<div id="clearance" class="sign-in text-center">
-  <h2><%= t(".title") %> to continue</h2>
-
-  <%= render partial: '/sessions/form' %>
-
-</div>
+<body class="bg1">
+	<div id="clearance" class="sign-in well text-center">
+	  <h2><%= t(".title") %> to continue</h2>
+	  <%= render partial: '/sessions/form' %>
+	  <div class="other-links form-group">
+      <%= link_to "Continue with Facebook", "/auth/facebook" %>
+      <!-- /auth/facebook?display=popup -->
+      <!-- /auth/facebook?scope=email -->
+    </div>
+	</div>
+</body>

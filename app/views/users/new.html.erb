@@ -1,17 +1,20 @@
-<div id="clearance" class="sign-up text-center">
-  <h2><%= t(".title") %></h2>
+<body class="bg1">
+  <div id="clearance" class="sign-up well text-center vertical-align">
+    <h2><%= t(".title") %></h2>
 
-  <%= form_for @user do |form| %>
-    <%= render partial: '/users/form', object: form %>
+    <%= form_for @user do |form| %>
+      <%= render partial: '/users/form', object: form %>
 
-    <div class="submit-field form-group">
-      <%= form.submit %>
-    </div>
+      <div class="submit-field form-group">
+        <%= form.submit %>
+      </div>
 
-    <div class="other-links form-group">
-      <%= link_to "Sign in with Facebook", "/auth/facebook" %>
-      <!-- /auth/facebook?display=popup -->
-      <!-- /auth/facebook?scope=email -->
-    </div>
-  <% end %>
-</div>
+      <div class="other-links form-group">
+        <%= link_to "Sign up with Facebook", "/auth/facebook" %>
+        <!-- /auth/facebook?display=popup -->
+        <!-- /auth/facebook?scope=email -->
+      </div>
+    <% end %>
+  </div>
+</body>
+

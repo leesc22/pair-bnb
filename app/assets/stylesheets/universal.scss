@@ -2,6 +2,16 @@ body {
   padding-top: 60px;
 }
 
+.bg1 {
+  background: {
+    image: asset-url("sylwia-pietruszka-218324.jpg");
+    repeat: no-repeat;
+    size: cover;
+    attachment: fixed;
+    position: center bottom;
+  }
+}
+
 section {
   overflow: auto;
 }
