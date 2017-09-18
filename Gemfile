@@ -36,6 +36,8 @@ gem 'clearance'
 gem 'figaro'
 # Use OmniAuth Facebook
 gem 'omniauth-facebook'
+# Use faker for seeding
+gem 'faker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

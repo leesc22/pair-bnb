@@ -5,3 +5,44 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+require 'faker'
+
+# Seed Users
+user = {}
+user['password'] = 'asdf'
+
+ActiveRecord::Base.transaction do
+	20.times do
+		user['name'] = Faker::Name.name
+		user['email'] = Faker::Internet.email
+
+		User.create(user)
+	end
+end
+
+# Seed Listings
+listing = {}
+uids = []
+User.all.each { |u| uids << u.id }
+
+ActiveRecord::Base.transaction do
+	40.times do
+		listing['title'] = Faker::Hipster.sentence
+		listing['address'] = Faker::Address.street_address
+		listing['city'] = Faker::Address.city
+		listing['postcode'] = Faker::Address.zip_code
+		listing['state'] = Faker::Address.state
+		listing['country'] = Faker::Address.country
+		listing['price_per_night'] = rand(80..500)
+		listing['room_type'] = ['Entire place', 'Private room', 'Shared room'].sample
+		listing['smoking_allowed'] = [true, false].sample
+		listing['pets_allowed'] = [true, false].sample
+		listing['wifi'] = [true, false].sample
+		listing['pool'] = [true, false].sample
+		listing['user_id'] = uids.sample
+
+		Listing.create(listing)
+	end
+end
