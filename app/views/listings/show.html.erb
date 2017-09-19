@@ -1,14 +1,20 @@
 <div class="container">
-	<div class="col-lg-7">	
-		<% if @listing.user == current_user %>
-			<%= link_to 'Edit Listing', edit_listing_path %>
+	<div class="col-lg-7">
+		<% unless @listing.user.moderator? %>
+			<% if @listing.user == current_user || current_user.admin? %>
+				<%= link_to 'Edit Listing', edit_listing_path %>
+			<% end %>
 		<% end %>
+		<% unless current_user.customer? || @listing.verified %>
+				<%= link_to 'Verify Listing', verify_listing_path, method: :verify, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+		<% end %> 
 		<br>
 
 		<div class="row">
-			<div class="listing-title">
+			<span class="listing-title">
 				<%= @listing.title %>
-			</div>
+			</span>
+			<span><%= "verified" if @listing.verified %></span>
 		</div>
 
 		<div class="row">
@@ -38,7 +44,7 @@
 		</div>
 
 		<br>
-		<% if @listing.user == current_user %>
+		<% if @listing.user == current_user || current_user.admin? %>
 			<%= link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' } %>
 		<% end %>
 	</div>

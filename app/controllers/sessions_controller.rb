@@ -1,4 +1,3 @@
-require 'byebug'
 class SessionsController < Clearance::SessionsController
 	def create_from_omniauth
 		auth_hash = request.env["omniauth.auth"]

@@ -1,5 +1,6 @@
-
 class ListingsController < ApplicationController
+	before_action :moderator_and_admin_only, only: [:verify]
+
 	def index
 		if params[:page].nil? || params[:page].empty?
 			@current_page = 1
@@ -21,6 +22,8 @@ class ListingsController < ApplicationController
 	end
 
 	def new
+		# allowed?(action: "new_listing", user: current_user)
+
 		@listing = Listing.new
 	end
 
@@ -36,6 +39,12 @@ class ListingsController < ApplicationController
 
 	def edit
 		@listing = Listing.find(params[:id])
+		unless current_user.admin?
+			unless @listing.user == current_user
+				flash[:notice] = "Sorry. Access denied."
+				return redirect_back(fallback_location: root_path)
+			end
+		end
 	end
 
 	def update
@@ -57,9 +66,14 @@ class ListingsController < ApplicationController
 		@user = User.find(params[:id])
 	end
 
+	def verify
+		@listing = Listing.find(params[:id])
+		@listing.update_attribute(:verified, true)
+	end
+
 	private
 
 	def listing_params
-		params.require(:listing).permit(:title, :tag_list, :address, :city, :postcode, :state, :country, :price_per_night, :room_type, :smoking_allowed, :pets_allowed, :wifi, :pool)
+		params.require(:listing).permit(:title, :tag_list, :address, :city, :postcode, :state, :country, :price_per_night, :room_type, :smoking_allowed, :pets_allowed, :wifi, :pool, :verified)
 	end
 end
