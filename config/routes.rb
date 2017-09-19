@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   resources :listings
   get "/users/:id/listings" => "listings#user_listings", as: "user_listings"
 
+  # Redirect from tags
+  get 'tags/:tag' => 'listings#index', as: "tag"
+
   # Set up root
   root 'listings#index'
 

@@ -6,6 +6,14 @@
   </div>
 </div>
 
+<!-- Taggings -->
+<div class="text-field form-group">
+  <%= form.label :tag_list, "Tags", class: 'col-sm-3 control-label' %>
+  <div class="col-sm-9">
+	  <%= form.text_field :tag_list, placeholder: 'Tags (separated by commans)', class: 'form-control' %>
+  </div>
+</div>
+
 <!-- Address -->
 <div class="text-field form-group">
   <%= form.label :address, class: 'col-sm-3 control-label' %>

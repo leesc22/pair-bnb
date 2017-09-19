@@ -7,7 +7,11 @@ class ListingsController < ApplicationController
 			@current_page = params[:page].to_i
 		end
 		offset = (@current_page -  1) * 10
-		seach_results = Listing.search(params[:search]).order(created_at: :desc)
+		if params[:tag]
+			seach_results = Listing.tagged_with(params[:tag])
+		else
+			seach_results = Listing.search(params[:search]).order(created_at: :desc)
+		end
 		@pages = seach_results.count.div 10 + 1
 		@listings = seach_results.limit(10).offset(offset)
 	end
@@ -56,6 +60,6 @@ class ListingsController < ApplicationController
 	private
 
 	def listing_params
-		params.require(:listing).permit(:title, :address, :city, :postcode, :state, :country, :price_per_night, :room_type, :smoking_allowed, :pets_allowed, :wifi, :pool)
+		params.require(:listing).permit(:title, :tag_list, :address, :city, :postcode, :state, :country, :price_per_night, :room_type, :smoking_allowed, :pets_allowed, :wifi, :pool)
 	end
 end

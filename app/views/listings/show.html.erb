@@ -10,6 +10,13 @@
 				<%= @listing.title %>
 			</div>
 		</div>
+
+		<div class="row">
+			<div class="listing-tag">
+				<span>Tags: </span>
+				<span><%= raw @listing.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></span>
+			</div>
+		</div>
 		
 		<div class="row">
 			<div class="listing-address">
