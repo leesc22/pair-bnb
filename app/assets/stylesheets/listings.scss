@@ -15,6 +15,23 @@
 	}
 }
 
+.listing-images {
+	position: relative;
+	overflow: hidden;
+	width: 50vw;
+	height: 50vh;
+	img {
+		position: absolute;
+		top: -9999px;
+		right: -9999px;
+		bottom: -9999px;
+		left: -9999px;
+		margin: auto;
+		min-width: 100%;
+		min-height: 100%;
+	}
+}
+
 .listing-title {
 	font-size: 36px;
 	font-weight: 700;

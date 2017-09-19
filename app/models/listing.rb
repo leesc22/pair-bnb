@@ -3,6 +3,7 @@ class Listing < ApplicationRecord
 	has_many :taggings
 	has_many :tags, through: :taggings
 	validates :title, :address, :price_per_night, presence: true
+	mount_uploaders :images, ImageUploader
 
 	def self.search(search)
 		if search

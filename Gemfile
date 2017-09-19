@@ -38,6 +38,9 @@ gem 'figaro'
 gem 'omniauth-facebook'
 # Use faker for seeding
 gem 'faker'
+# Use CarrierWave and rmagick for image uploader
+gem 'rmagick'
+gem 'carrierwave'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
