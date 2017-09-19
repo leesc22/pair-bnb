@@ -1,5 +1,6 @@
-
 class ListingsController < ApplicationController
+	#before_action :admin_only, except: [:index]
+
 	def index
 		if params[:page].nil? || params[:page].empty?
 			@current_page = 1
@@ -21,6 +22,8 @@ class ListingsController < ApplicationController
 	end
 
 	def new
+		# allowed?(action: "new_listing", user: current_user)
+
 		@listing = Listing.new
 	end
 
@@ -36,6 +39,12 @@ class ListingsController < ApplicationController
 
 	def edit
 		@listing = Listing.find(params[:id])
+		unless current_user.admin?
+			unless @listing.user == current_user
+				flash[:notice] = "Sorry. Access denied."
+				return redirect_back(fallback_location: root_path)
+			end
+		end
 	end
 
 	def update

@@ -1,4 +1,19 @@
 class UsersController < Clearance::UsersController
+  before_action :admin_only, only: [:index, :destroy]
+
+  def index
+    @users = User.all.order(:id)
+  end
+
+  def show
+    # allowed?(action: "show_user", user: current_user)
+
+    if params[:id].nil?
+      @user = current_user
+    else
+      @user = User.find(params[:id])
+    end
+  end
 
   def create
     @user = User.new(user_params)
@@ -11,16 +26,14 @@ class UsersController < Clearance::UsersController
     end
   end
 
-  def show
-    if params[:id].nil?
-      @user = current_user
-    else
-      @user = User.find(params[:id])
-    end
-  end
-
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
+    unless current_user.admin?
+      unless @user == current_user
+        flash[:notice] = "Sorry. Access denied."
+        return redirect_back(fallback_location: root_path)
+      end
+    end
   end
 
   def update
@@ -31,6 +44,12 @@ class UsersController < Clearance::UsersController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to users_path
   end
 
   private
