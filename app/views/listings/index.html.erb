@@ -3,8 +3,12 @@
 		<% @listings.each_slice(2) do |row| %>
 			<div class="row">			
 				<% row.each do |listing| %>
-					<%= link_to listing_path(listing), target: "_blank" do %>
-						<div class="col-sm-12 col-md-6">
+					<div class="col-sm-12 col-md-6">
+						<div class="listing-tag">
+							<span>Tags: </span>
+							<span><%= raw listing.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></span>
+						</div>
+						<%= link_to listing_path(listing), target: "_blank" do %>
 							<div class="thumbnail">
 								<img src="" alt="">
 								<div class="caption">
@@ -12,8 +16,8 @@
 									<span><%= listing.address %></span>
 								</div>
 							</div>
-						</div>
-					<% end %>
+						<% end %>
+					</div>
 				<% end %>
 			</div>
 		<% end %>
