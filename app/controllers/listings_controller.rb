@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-	#before_action :admin_only, except: [:index]
+	before_action :moderator_and_admin_only, only: [:verify]
 
 	def index
 		if params[:page].nil? || params[:page].empty?
@@ -66,9 +66,14 @@ class ListingsController < ApplicationController
 		@user = User.find(params[:id])
 	end
 
+	def verify
+		@listing = Listing.find(params[:id])
+		@listing.update_attribute(:verified, true)
+	end
+
 	private
 
 	def listing_params
-		params.require(:listing).permit(:title, :tag_list, :address, :city, :postcode, :state, :country, :price_per_night, :room_type, :smoking_allowed, :pets_allowed, :wifi, :pool)
+		params.require(:listing).permit(:title, :tag_list, :address, :city, :postcode, :state, :country, :price_per_night, :room_type, :smoking_allowed, :pets_allowed, :wifi, :pool, :verified)
 	end
 end

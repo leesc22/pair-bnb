@@ -24,7 +24,10 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#create_from_omniauth'
   
   resources :listings
+  # custom method to show one user's all listings
   get "/users/:id/listings" => "listings#user_listings", as: "user_listings"
+  # custom method to verify listing
+  post "/listings/:id" => "listings#verify", as: "verify_listing"
 
   # Redirect from tags
   get 'tags/:tag' => 'listings#index', as: "tag"

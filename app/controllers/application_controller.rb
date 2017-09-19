@@ -19,4 +19,11 @@ class ApplicationController < ActionController::Base
 			return redirect_back(fallback_location: root_path)
 		end
 	end
+
+	def moderator_and_admin_only
+		unless current_user.admin? || current_user.moderator?
+			flash[:notice] = "Sorry. Access denied."
+			return redirect_back(fallback_location: root_path)
+		end
+	end
 end
