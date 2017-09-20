@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   # Redirect user from Facebook login
   get '/auth/:provider/callback' => 'sessions#create_from_omniauth'
   
+  # Listing
   resources :listings
   # custom method to show one user's all listings
   get "/users/:id/listings" => "listings#user_listings", as: "user_listings"
@@ -31,6 +32,9 @@ Rails.application.routes.draw do
 
   # Redirect from tags
   get 'tags/:tag' => 'listings#index', as: "tag"
+
+  # Reservation
+  resources :reservations, except: [:edit, :update]
 
   # Set up root
   root 'listings#index'

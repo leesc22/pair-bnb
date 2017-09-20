@@ -1,0 +1,16 @@
+<div class="container">
+	<div>Reservations</div>
+
+	<div id="" class="">
+		<!-- Display error messages if any -->
+		<% if @reservation.errors.any? %>
+			<ul>
+				<% @reservation.errors.full_messages.each do |message| %>
+					<li><%= message%></li>
+				<% end %>
+			</ul>
+
+		<% end %>
+	</div>
+</div>
+

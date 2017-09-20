@@ -50,4 +50,27 @@
 			<%= link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' } %>
 		<% end %>
 	</div>
+
+	<div class="col-lg-5">
+		<%= form_for @reservation, html: { class: 'form-horizontal reservation-form' } do |form| %>
+			<!-- Checkin / checkout date -->
+			<div class="row form-group">
+				<div class="reservation-col">
+					<%= form.label :checkin_date, "Check In", class: 'control-label' %>
+					<%= form.text_field :checkin_date, class: 'form-control datetimepicker_in' %>
+				</div>
+				<div class="reservation-col">
+					<%= form.label :checkout_date, "Check Out", class: 'control-label' %>
+					<%= form.text_field :checkout_date, class: 'form-control datetimepicker_out' %>
+				</div>
+			</div>
+
+			<%= form.hidden_field :listing_id, value: @listing.id %>
+
+			<!-- Submit button -->
+	    <div class="submit-field form-group">
+		      <%= form.submit 'Book', class: 'btn btn-danger' %>
+	    </div>
+		<% end %>
+	</div>
 </div>
