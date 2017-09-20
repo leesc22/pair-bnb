@@ -12,5 +12,32 @@
 
 		<% end %>
 	</div>
-</div>
 
+	<%= form_for @reservation, html: { class: 'form-horizontal reservation-form' } do |form| %>
+		<!-- Checkin / checkout date -->
+		<div class="form-group">
+			<div class="reservation-col">
+				<%= form.label :checkin_date, "Check In", class: 'control-label' %>
+				<%= form.text_field :checkin_date, class: 'form-control datetimepicker_in' %>
+			</div>
+			<div class="reservation-col">
+				<%= form.label :checkout_date, "Check Out", class: 'control-label' %>
+				<%= form.text_field :checkout_date, class: 'form-control datetimepicker_out' %>
+			</div>
+		</div>
+
+		<%= form.hidden_field :listing_id %>
+
+		<!-- Guest No -->
+		<div class="form-group">
+		  <%= form.label :number_of_guests, class: 'control-label' %>
+		  <%= form.number_field :guest_no, required: true, class: 'form-control reservation-guest' %>
+		</div>
+
+		<!-- Submit button -->
+    <div class="submit-field form-group">
+	      <%= form.submit 'Book', class: 'btn btn-danger' %>
+    </div>
+	<% end %>
+
+</div>
