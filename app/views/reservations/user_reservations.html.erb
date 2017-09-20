@@ -1,0 +1,16 @@
+<h4><%= link_to @user.name, user_path %></h4>
+
+<h4><%= @user.reservations.count %> reservations</h4>
+
+<% @user.reservations.each do |reservation| %>
+	<% listing = reservation.listing %>
+	<%= link_to reservation_path(reservation), target: "_blank" do %>
+		<span>View more details</span>
+	<% end %>
+	<span>
+		<%= listing.title %> | <%= reservation.total_amount %>
+	</span>
+	<%= link_to listing_path(listing), target: "_blank" do %>
+		<span>View listing</span>
+	<% end %>
+<% end %>

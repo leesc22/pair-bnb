@@ -24,6 +24,14 @@ class ReservationsController < ApplicationController
 	def destroy
 	end
 
+	def user_reservations
+    if params[:id].nil?
+      @user = current_user
+    else
+      @user = User.find(params[:id])
+    end
+	end
+
 	private
 
 	def reservation_params

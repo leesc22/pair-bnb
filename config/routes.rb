@@ -35,6 +35,8 @@ Rails.application.routes.draw do
 
   # Reservation
   resources :reservations, except: [:edit, :update]
+  # custom method to show current user reservations
+  get "/users/:id/reservations" => "reservations#user_reservations", as: "user_reservations"
 
   # Set up root
   root 'listings#index'
