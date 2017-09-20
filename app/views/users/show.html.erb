@@ -1,11 +1,18 @@
-<div class="container-fluid">
+<div class="container-fluid profile-page">
 	<div class="row text-center">
 		<!-- Avatar image -->
-	
-		<h1>Hey, I'm <%= @user.name %>!</h1>
-		<% if @user == current_user %>
-			<div><%= link_to 'Edit Profile', edit_user_path %></div>
-		<% end %>
+		<div class="col-lg-3 col-md-4 hide-sm">
+			<div class="text-center profile-avatar">
+				<%= image_tag @user.avatar.url.to_s, class: 'img-responsive' if @user.avatar? %>
+			</div>
+		</div>
+
+		<div class="col-lg-9 col-md-8 col-sm-12 text-left">
+			<h1 class="text-left">Hey, I'm <%= @user.name %>!</h1>
+			<% if @user == current_user %>
+				<div><%= link_to 'Edit Profile', edit_user_path %></div>
+			<% end %>
+		</div>
 	</div>
 
 	<div class="row">

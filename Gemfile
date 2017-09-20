@@ -14,6 +14,7 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 # Use Bootstrap SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.7'
+gem 'jquery-rails'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -38,6 +39,10 @@ gem 'figaro'
 gem 'omniauth-facebook'
 # Use faker for seeding
 gem 'faker'
+# Use CarrierWave and rmagick for image uploader
+# gem 'rmagick'
+gem 'mini_magick'
+gem 'carrierwave'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

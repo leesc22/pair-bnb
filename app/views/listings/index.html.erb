@@ -10,7 +10,11 @@
 						</div>
 						<%= link_to listing_path(listing), target: "_blank" do %>
 							<div class="thumbnail">
-								<img src="" alt="">
+								<% if listing.images? %>
+									<%= image_tag listing.images[0].url.to_s, class: 'img-responsive' %>
+								<% else %>
+									<img src="" alt="">
+								<% end %>
 								<div class="caption">
 									<span class="listings-item-title">RM<%= number_with_precision(listing.price_per_night, precision: 2) %>  <%= listing.title %></span><br>
 									<span><%= listing.address %></span>

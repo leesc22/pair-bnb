@@ -121,3 +121,12 @@
 		<% end %>
   </div>
 </div>
+
+<!-- Upload multiple images -->
+<div class="file-field form-group">
+	<%= form.label :property_image, class: 'col-sm-3 control-label' %>
+  <div class="col-sm-9">
+	  <%= form.file_field :images, multiple: true %>
+	  <%#= form.label :remote_image_url, "or image URL" %><%#= form.text_field :remote_image_url %>
+  </div>
+</div>
