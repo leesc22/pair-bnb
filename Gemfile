@@ -39,7 +39,8 @@ gem 'omniauth-facebook'
 # Use faker for seeding
 gem 'faker'
 # Use CarrierWave and rmagick for image uploader
-gem 'rmagick'
+# gem 'rmagick'
+gem 'mini_magick'
 gem 'carrierwave'
 
 # Use Capistrano for deployment

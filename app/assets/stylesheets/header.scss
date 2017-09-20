@@ -12,3 +12,14 @@
     text-decoration: none;
   }
 }
+
+.navbar-profile {
+  a {
+    padding: 10px 15px !important;
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+  }
+}
