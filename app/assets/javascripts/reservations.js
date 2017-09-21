@@ -2,6 +2,7 @@ $(document).ready(function() {
 	$('.datetimepicker_in').datetimepicker({
 		format: 'DD-MM-YYYY',
 		minDate: new Date(),
+		disabledDates: []
 	});
 	$('.datetimepicker_in').on('dp.change', function(e) {	
 		$checkin_date_string = e.target.value;

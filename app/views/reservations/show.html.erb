@@ -43,6 +43,12 @@
 			Total amount: RM<%= number_with_precision(@reservation.total_amount, precision: 2) %>
 		</div>
 
+		<div>
+			<% if @reservation.user == current_user || current_user.admin? %>
+				<%= link_to 'Cancel booking', reservation_path(@reservation), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+			<% end %>
+		</div>
+
 	</div>
 
 </div>
