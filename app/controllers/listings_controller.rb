@@ -1,4 +1,5 @@
 class ListingsController < ApplicationController
+	before_action :customer_only, only: [:new, :create]
 	before_action :moderator_and_admin_only, only: [:verify]
 
 	def index
@@ -59,7 +60,7 @@ class ListingsController < ApplicationController
 	def destroy
 		@listing = Listing.find(params[:id])
 		@listing.destroy
-		redirect_to user_listings_path
+		redirect_to user_listings_path(current_user)
 	end
 
 	def user_listings

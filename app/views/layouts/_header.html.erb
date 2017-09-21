@@ -12,8 +12,8 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				<% if signed_in? %>
-					<li><%= link_to 'Become a Host', new_listing_path %></li>
-					<li><%= link_to 'Trips', user_reservations_path(current_user) %></li>
+					<li><%= link_to 'Become a Host', new_listing_path if current_user.customer? %></li>
+					<li><%= link_to 'Trips', user_reservations_path(current_user)  if current_user.customer? %></li>
 					<li class="navbar-profile">
 						<%= link_to current_user do %>
 							<%= image_tag current_user.avatar.url(:thumb).to_s %>

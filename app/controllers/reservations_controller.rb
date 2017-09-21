@@ -1,4 +1,5 @@
 class ReservationsController < ApplicationController
+	before_action :customer_only, only: [:new, :create]
 	before_action :admin_only, only: [:index]
 
 	def index

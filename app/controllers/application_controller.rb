@@ -12,6 +12,13 @@ class ApplicationController < ActionController::Base
 	# end
 
 	private
+	
+	def customer_only
+		unless current_user.customer?
+			flash[:notice] = "Sorry. Access denied."
+			return redirect_back(fallback_location: root_path)
+		end
+	end
 
 	def admin_only
 		unless current_user.admin?
