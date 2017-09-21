@@ -32,9 +32,17 @@
 			<% end %>
 		</div>
 
+		<!-- Reservation date -->
+		<div>
+			Check In date: <%= @reservation.checkin_date %><br>
+			Check Out date: <%= @reservation.checkout_date %>
+		</div>
+
+		<!-- Reservation total amount -->
 		<div>
 			Total amount: RM<%= number_with_precision(@reservation.total_amount, precision: 2) %>
 		</div>
+
 	</div>
 
 </div>
