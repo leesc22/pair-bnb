@@ -1,5 +1,6 @@
 class Listing < ApplicationRecord
 	belongs_to :user
+	has_many :reservations, dependent: :destroy
 	has_many :taggings
 	has_many :tags, through: :taggings
 	validates :title, :address, :price_per_night, presence: true

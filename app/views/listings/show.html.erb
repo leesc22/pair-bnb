@@ -12,6 +12,7 @@
 		<% end %> 
 		<br>
 
+		<!-- Listing title -->
 		<div class="row">
 			<span class="listing-title">
 				<%= @listing.title %>
@@ -19,6 +20,7 @@
 			<span><%= "verified" if @listing.verified %></span>
 		</div>
 
+		<!-- Listing taggings -->
 		<div class="row">
 			<div class="listing-tag">
 				<span>Tags: </span>
@@ -26,6 +28,7 @@
 			</div>
 		</div>
 		
+		<!-- Listing address -->
 		<div class="row">
 			<div class="listing-address">
 				<%= @listing.address %> 
@@ -34,12 +37,14 @@
 			</div>
 		</div>
 		
+		<!-- Listing price per night -->
 		<div class="row">
 			<span>RM</span>
 			<span class="listing-price"><%= number_with_precision(@listing.price_per_night, precision: 2) %></span>
 			<span> per night</span>
 		</div>
 
+		<!-- Listing host -->
 		<div class="row">
 			<% host = @listing.user %>
 			<div class="listing-host"><%= link_to user_path(host) do %><%= host.name %><% end %></div>
@@ -50,4 +55,35 @@
 			<%= link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' } %>
 		<% end %>
 	</div>
+
+	<% if current_user.customer? %>
+	<div class="col-lg-3">
+		<%= form_for @reservation, html: { class: 'form-horizontal reservation-form' } do |form| %>
+			<!-- Checkin / checkout date -->
+			<div class="form-group">
+				<div class="reservation-col">
+					<%= form.label :checkin_date, "Check In", class: 'control-label' %>
+					<%= form.text_field :checkin_date, required: true, class: 'form-control datetimepicker_in' %>
+				</div>
+				<div class="reservation-col">
+					<%= form.label :checkout_date, "Check Out", class: 'control-label' %>
+					<%= form.text_field :checkout_date, required: true, class: 'form-control datetimepicker_out' %>
+				</div>
+			</div>
+
+			<%= form.hidden_field :listing_id, value: @listing.id %>
+
+			<!-- Guest No -->
+			<div class="form-group">
+			  <%= form.label :number_of_guests, class: 'control-label' %>
+			  <%= form.number_field :guest_no, required: true, class: 'form-control reservation-guest' %>
+			</div>
+
+			<!-- Submit button -->
+	    <div class="submit-field form-group">
+		      <%= form.submit 'Book', class: 'btn btn-danger' %>
+	    </div>
+		<% end %>
+	</div>
+	<% end %>
 </div>

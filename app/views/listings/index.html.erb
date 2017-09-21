@@ -13,7 +13,7 @@
 								<% if listing.images? %>
 									<%= image_tag listing.images[0].url.to_s, class: 'img-responsive' %>
 								<% else %>
-									<img src="" alt="">
+									<%= image_tag 'fallback/image-default.jpg', class: 'img-responsive' %>
 								<% end %>
 								<div class="caption">
 									<span class="listings-item-title">RM<%= number_with_precision(listing.price_per_night, precision: 2) %>  <%= listing.title %></span><br>
