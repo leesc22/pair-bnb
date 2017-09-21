@@ -4,13 +4,22 @@
 
 <% @user.reservations.each do |reservation| %>
 	<% listing = reservation.listing %>
-	<%= link_to reservation_path(reservation), target: "_blank" do %>
-		<span>View more details</span>
-	<% end %>
-	<span>
-		<%= listing.title %> | <%= reservation.total_amount %>
-	</span>
-	<%= link_to listing_path(listing), target: "_blank" do %>
-		<span>View listing</span>
-	<% end %>
+	<div class="row reservation-item">
+		<!-- Listing image -->
+		<div class="col-lg-2">
+			<% if listing.images? %>
+				<%= image_tag listing.images[0].url.to_s, class: 'img-responsive' %>
+			<% else %>
+				<img class="img-responsive" src="http://via.placeholder.com/200x200" alt="">
+			<% end %>
+		</div>
+
+		<div class="col-lg-10">		
+			<%= link_to 'View more details', reservation_path(reservation) %><br>
+			<%= link_to listing_path(listing), class: 'listing-title' do %>
+				<%= listing.title %>
+			<% end %><br>
+			Total amount: RM<%= number_with_precision(reservation.total_amount, precision: 2) %><br>
+		</div>
+	</div>
 <% end %>

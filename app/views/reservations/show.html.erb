@@ -1,7 +1,7 @@
 <div class="container">
-	<div>Reservations</div>
+	<div>Your Reservation</div>
 
-	<div id="" class="">
+	<div id="" class="error">
 		<!-- Display error messages if any -->
 		<% if @reservation.errors.any? %>
 			<ul>
@@ -13,7 +13,21 @@
 		<% end %>
 	</div>
 
-	
+	<div class="row">
+		<% listing = @reservation.listing %>
+
+		<!-- Listing image -->
+		<div class="col-lg-2">
+			<% if listing.images? %>
+				<%= image_tag listing.images[0].url.to_s, class: 'img-responsive' %>
+			<% else %>
+				<img src="" alt="">
+			<% end %>
+		</div>
+
+		<!-- Listing title -->
+		
+	</div>
 
 </div>
 
