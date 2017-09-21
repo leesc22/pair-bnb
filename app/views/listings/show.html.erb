@@ -62,11 +62,11 @@
 			<div class="form-group">
 				<div class="reservation-col">
 					<%= form.label :checkin_date, "Check In", class: 'control-label' %>
-					<%= form.text_field :checkin_date, class: 'form-control datetimepicker_in' %>
+					<%= form.text_field :checkin_date, required: true, class: 'form-control datetimepicker_in' %>
 				</div>
 				<div class="reservation-col">
 					<%= form.label :checkout_date, "Check Out", class: 'control-label' %>
-					<%= form.text_field :checkout_date, class: 'form-control datetimepicker_out' %>
+					<%= form.text_field :checkout_date, required: true, class: 'form-control datetimepicker_out' %>
 				</div>
 			</div>
 

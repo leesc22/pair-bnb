@@ -2,8 +2,10 @@ class Reservation < ApplicationRecord
 	belongs_to :user
 	belongs_to :listing
 
+  validates :guest_no, numericality: { greater_than: 0}, presence: true
   validate :checkin_date_cannot_be_in_the_past,
-    :checkout_date_cannot_be_less_than_checkin_date
+    :checkout_date_cannot_be_less_than_checkin_date,
+    :date_cannot_be_overlap
   before_save :calculate_total_amount
 
   def checkin_date_cannot_be_in_the_past
@@ -12,8 +14,16 @@ class Reservation < ApplicationRecord
   end
 
   def checkout_date_cannot_be_less_than_checkin_date
-    errors.add(:checkout_date, "can't be less than or equal to Checkin date") if
+    errors.add(:checkout_date, "must be more than  Checkin date") if
       !checkout_date.blank? and checkout_date <= checkin_date
+  end
+
+  def date_cannot_be_overlap
+    Reservation.where(listing_id: listing_id).each do |reservation| 
+      if (checkin_date..checkout_date).overlaps?(reservation.checkin_date..reservation.checkout_date)
+        return errors.add(:checkin_date, "can't be overlap with other reservations") 
+      end
+    end 
   end
 
   def calculate_total_amount

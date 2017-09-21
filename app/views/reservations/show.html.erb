@@ -21,12 +21,20 @@
 			<% if listing.images? %>
 				<%= image_tag listing.images[0].url.to_s, class: 'img-responsive' %>
 			<% else %>
-				<img src="" alt="">
+				<img class="img-responsive" src="http://via.placeholder.com/200x200" alt="">
 			<% end %>
 		</div>
 
 		<!-- Listing title -->
-		
+		<div>
+			<%= link_to listing_path(listing), class: 'listing-title' do %>
+				<%= listing.title %>
+			<% end %>
+		</div>
+
+		<div>
+			Total amount: RM<%= number_with_precision(@reservation.total_amount, precision: 2) %>
+		</div>
 	</div>
 
 </div>
