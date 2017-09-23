@@ -1,7 +1,7 @@
 <%= render partial: '/listings/image_carousel'%>
 
 <div class="container">
-	<div class="col-lg-7">
+	<div class="col-lg-7 col-md-8">
 		<% unless @listing.user.moderator? %>
 			<% if @listing.user == current_user || current_user.admin? %>
 				<%= link_to 'Edit Listing', edit_listing_path %>
@@ -57,7 +57,7 @@
 	</div>
 
 	<% if current_user.customer? %>
-	<div class="col-lg-3">
+	<div class="col-lg-3 col-md-3">
 		<%= form_for @reservation, html: { class: 'form-horizontal reservation-form' } do |form| %>
 			<!-- Checkin / checkout date -->
 			<div class="form-group">

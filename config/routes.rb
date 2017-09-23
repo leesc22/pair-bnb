@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  get 'braintree/new'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # Set up root
+  root 'listings#index'
 
   # Override clearance route - #create
   resources :users, except: [:new] 
@@ -38,7 +43,7 @@ Rails.application.routes.draw do
   # custom method to show current user reservations
   get "/users/:id/reservations" => "reservations#user_reservations", as: "user_reservations"
 
-  # Set up root
-  root 'listings#index'
-
+  # braintree
+  get 'braintree/new'
+  post 'braintree/checkout'
 end

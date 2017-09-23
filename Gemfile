@@ -48,6 +48,8 @@ gem 'fog-aws'
 # Use bootstrap3-datetimepicker for calendar view
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
+# Use braintree for payment
+gem 'braintree'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
