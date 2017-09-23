@@ -44,6 +44,12 @@
 		</div>
 
 		<div>
+			<% if @reservation.user == current_user %>
+				<%= link_to "Make Payment", braintree_new_path, class: 'btn btn-danger' %>
+			<% end %>
+		</div>
+
+		<div>
 			<% if @reservation.user == current_user || current_user.admin? %>
 				<%= link_to 'Cancel booking', reservation_path(@reservation), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
 			<% end %>
