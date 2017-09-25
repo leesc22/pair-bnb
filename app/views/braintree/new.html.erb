@@ -11,7 +11,10 @@
 		<div id="cvv" class="hosted-field"></div>
 
 		<%= form.hidden_field "payment_method_nonce" %>
-    
+    <%= form.hidden_field :reservation_id, value: @reservation.id %>
+    <%= form.hidden_field :amount, value: @reservation.total_amount %>
+
+
 		<div class="button-container">
 			<%= form.submit "Purchase", disabled: true, class: "btn btn-primary", id:"submit-payment-btn" %>
 		</div>

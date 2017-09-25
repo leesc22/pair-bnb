@@ -1,6 +1,7 @@
 class Reservation < ApplicationRecord
 	belongs_to :user
 	belongs_to :listing
+  has_many :payments, dependent: :destroy
 
   validates :guest_no, numericality: { greater_than: 0}, presence: true
   validate :checkin_date_cannot_be_in_the_past,

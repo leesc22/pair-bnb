@@ -45,7 +45,11 @@
 
 		<div>
 			<% if @reservation.user == current_user %>
-				<%= link_to "Make Payment", braintree_new_path, class: 'btn btn-danger' %>
+				<% if paid? %>
+					Paid
+				<% else %>
+					<%= link_to "Make Payment", braintree_new_path(:reservation_id => @reservation.id), class: 'btn btn-danger' %>
+				<% end %>
 			<% end %>
 		</div>
 
