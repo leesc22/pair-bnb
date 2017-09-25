@@ -16,6 +16,7 @@ class ReservationsController < ApplicationController
 	def create
 		@reservation = current_user.reservations.new(reservation_params)
 		if @reservation.save
+			ReservationMailer.booking_email(@reservation.user, @reservation.listing.user, @reservation.id).deliver_now
 			redirect_to @reservation
 		else
 			render 'new'
@@ -25,7 +26,7 @@ class ReservationsController < ApplicationController
 	def destroy
 		@reservation = Reservation.find(params[:id])
 		@reservation.destroy
-		redirect_to user_reservations_path
+		redirect_to user_reservations_path(@reservation.user_id)
 	end
 
 	def user_reservations
