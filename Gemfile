@@ -52,6 +52,8 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'braintree'
 # For background jobs
 gem 'sidekiq'
+# For accessing HTTP and REST resources
+gem 'rest-client'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
