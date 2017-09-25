@@ -46,4 +46,7 @@ Rails.application.routes.draw do
   # braintree
   get 'braintree/new'
   post 'braintree/checkout'
+
+  # payment
+  resources :payments, only: [:create]
 end
