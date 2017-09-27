@@ -1,3 +1,16 @@
+.filter {
+	#filter-price {
+		width: 350px;
+		height: 150px;
+		display: none;
+	}
+	#filter-city {
+		width: 350px;
+		display: none;
+	}
+	margin-bottom: 20px;
+}
+
 .listing-feed {
 	margin-top: 20px;
 	img {
