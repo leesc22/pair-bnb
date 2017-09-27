@@ -1,3 +1,25 @@
+.filter {
+	#filter-price {
+		width: 350px;
+		height: 150px;
+		display: none;
+	}
+	#filter-city {
+		width: 350px;
+		display: none;
+		.filter-city-item {
+			display: table-cell;
+			float: left;
+			width: 50%;
+		}
+		.filter-city-item:nth-child(2n+2) {
+			float: none;
+			clear: both;
+		}
+	}
+	margin-bottom: 20px;
+}
+
 .listing-feed {
 	margin-top: 20px;
 	img {

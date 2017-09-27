@@ -1,0 +1,25 @@
+<div class="row filter">
+	<%= button_tag 'Price', id:'filter-price-button' %>
+	<%= button_tag 'City', id:'filter-city-button' %>
+	<%= form_tag listings_path, method: 'get' do %>
+		<%= submit_tag 'Apply', class: 'btn btn-default' %>
+		<%= button_tag 'Cancel', class: 'btn btn-default' %>
+		<div class="well" id="filter-price">
+			<%= label_tag :price_per_night %>
+			<%= range_field_tag :price_below, listings_all.maximum(:price_per_night), { :min => listings_all.minimum(:price_per_night), :max => listings_all.maximum(:price_per_night), :step => '1.0', id: 'filter-price-bar'} %>
+			<div id="filter-price-value">below RM 0</div>
+		</div>
+
+		<div class="well" id="filter-city">
+			<%= label_tag :City %><br>
+			<div class="filter-city-list">
+				<% listings_all.distinct.pluck(:city).sort.each do |city| %>
+					<span class="filter-city-item">
+						<%= check_box_tag :city, city %>
+						<%= label_tag city %>
+					</span>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+</div>

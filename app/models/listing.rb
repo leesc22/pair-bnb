@@ -1,4 +1,6 @@
 class Listing < ApplicationRecord
+	include Filterable
+	
 	belongs_to :user
 	has_many :reservations, dependent: :destroy
 	has_many :taggings
@@ -6,11 +8,12 @@ class Listing < ApplicationRecord
 	validates :title, :address, :price_per_night, presence: true
 	mount_uploaders :images, ImageUploader
 
+	scope :city, -> (city) { where city: city }
+	scope :price_below, -> (price_per_night) { where("price_per_night <= ?", "#{price_per_night}") }
+
 	def self.search(search)
 		if search
 			where("title ILIKE :search OR address ILIKE :search OR city ILIKE :search OR postcode ILIKE :search OR state ILIKE :search OR country ILIKE :search", search: "%#{search}%")
-		else
-			all
 		end
 	end
 

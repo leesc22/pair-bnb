@@ -10,12 +10,14 @@ class ListingsController < ApplicationController
 		end
 		offset = (@current_page -  1) * 10
 		if params[:tag]
-			seach_results = Listing.tagged_with(params[:tag])
+			search_results = Listing.tagged_with(params[:tag]).order(created_at: :desc)
+		elsif params[:search]
+			search_results = Listing.search(params[:search]).order(created_at: :desc)
 		else
-			seach_results = Listing.search(params[:search]).order(created_at: :desc)
+			search_results = Listing.filter(params.slice(:price_below, :city)).order(created_at: :desc)
 		end
-		@pages = seach_results.count.div 10 + 1
-		@listings = seach_results.limit(10).offset(offset)
+		@pages = search_results.count.div 10 + 1
+		@listings = search_results.limit(10).offset(offset)
 	end
 
 	def show
