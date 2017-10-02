@@ -7,8 +7,7 @@ Rails.application.routes.draw do
   root 'listings#index'
 
   # Override clearance route - #create
-  resources :users, except: [:new] 
-  #, only: [:create, :show, :edit, :update]
+  resources :users
 
   # Start of clearance default routes
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
