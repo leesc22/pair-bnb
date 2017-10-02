@@ -18,19 +18,16 @@ RSpec.describe Reservation, type: :model do
 			let(:valid_checkout_date) { Date.today + 6.day }
 			let(:invalid_checkin_date1) { Date.today + 2.day }
 			let(:invalid_checkout_date1) { Date.today + 4.day }
-			let(:reservation2) {Reservation.create(user_id: user1.id, listing_id: listing1.id, checkin_date: valid_checkin_date, checkout_date: valid_checkout_date, guest_no: 1)}
-			let(:reservation3) {Reservation.create(user_id: user1.id, listing_id: listing1.id,checkin_date: invalid_checkin_date1, checkout_date: invalid_checkout_date1, guest_no: 1)}
+			let(:reservation2) {Reservation.new(user_id: user1.id, listing_id: listing1.id, checkin_date: valid_checkin_date, checkout_date: valid_checkout_date, guest_no: 1)}
+			let(:reservation3) {Reservation.new(user_id: user1.id, listing_id: listing1.id,checkin_date: invalid_checkin_date1, checkout_date: invalid_checkout_date1, guest_no: 1)}
 
 
 			it "booking without overlapping dates" do
-				expect(reservation2).to be_valid
-				# expect(Reservation.find_by(user_id: user1.id, listing_id: listing1.id, checkin_date: valid_checkin_date, checkout_date: valid_checkout_date)).not_to be nil
+				expect(reservation2.save).to eq(true)
 			end
 
 			it "booking with overlapping dates" do
-				expect(reservation3).not_to be_valid
-				# Reservation.create()
-				# expect(Reservation.find_by()).to be nil
+				expect(reservation3.save).to eq(false)
 			end
 		end
 	end
