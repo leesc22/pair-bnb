@@ -22,4 +22,12 @@ FactoryGirl.define do
     checkout_date { Date.today + 4.day }
     guest_no 1
   end
+
+  factory :reservation1, class: Reservation do
+    user1
+    listing1
+    checkin_date { Date.today + 2.day }
+    checkout_date { Date.today + 4.day }
+    guest_no 1
+  end
 end
