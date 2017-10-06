@@ -1,4 +1,8 @@
 $(document).ready(function() {
+	$('#filter-button').on('click', function() {
+		$('#filter').toggle();
+	});
+
 	$('#filter-price-button').on('click', function() {
 		$('#filter-price').toggle();
 	});

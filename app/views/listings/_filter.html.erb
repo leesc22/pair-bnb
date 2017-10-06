@@ -1,4 +1,6 @@
-<div class="row filter">
+<%= button_tag 'Advanced Filter', id:'filter-button' %>
+<br><br>
+<div class="row filter" id="filter">
 	<%= button_tag 'Price', id:'filter-price-button' %>
 	<%= button_tag 'City', id:'filter-city-button' %>
 	<%= form_tag listings_path, method: 'get' do %>
