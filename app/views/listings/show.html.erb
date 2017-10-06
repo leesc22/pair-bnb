@@ -2,15 +2,17 @@
 
 <div class="container">
 	<div class="col-lg-7 col-md-8">
-		<% unless @listing.user.moderator? %>
-			<% if @listing.user == current_user || current_user.admin? %>
-				<%= link_to 'Edit Listing', edit_listing_path %>
+		<% if signed_in? %>
+			<% unless @listing.user.moderator? %>
+				<% if @listing.user == current_user || current_user.admin? %>
+					<%= link_to 'Edit Listing', edit_listing_path %>
+				<% end %>
 			<% end %>
-		<% end %>
-		<% unless current_user.customer? || @listing.verified %>
-				<%= link_to 'Verify Listing', verify_listing_path, method: :verify, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+			<% unless current_user.customer? || @listing.verified %>
+					<%= link_to 'Verify Listing', verify_listing_path, method: :verify, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+			<% end %> 
+			<br>
 		<% end %> 
-		<br>
 
 		<!-- Listing title -->
 		<div class="row">
@@ -51,39 +53,48 @@
 		</div>
 
 		<br>
-		<% if @listing.user == current_user || current_user.admin? %>
-			<%= link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' } %>
+		<% if signed_in? %>
+			<% if @listing.user == current_user || current_user.admin? %>
+				<%= link_to 'Delete Listing', listing_path(@listing), method: :delete, data: { confirm: 'Are you sure?' } %>
+			<% end %>
 		<% end %>
 	</div>
 
-	<% if current_user.customer? %>
-	<div class="col-lg-3 col-md-3">
-		<%= form_for @reservation, html: { class: 'form-horizontal reservation-form' } do |form| %>
-			<!-- Checkin / checkout date -->
-			<div class="form-group">
-				<div class="reservation-col">
-					<%= form.label :checkin_date, "Check In", class: 'control-label' %>
-					<%= form.text_field :checkin_date, required: true, class: 'form-control datetimepicker_in' %>
+	<% if signed_in? %>
+		<% if current_user.customer? %>
+		<div class="col-lg-3 col-md-3">
+			<%= form_for @reservation, html: { class: 'form-horizontal reservation-form' } do |form| %>
+				<!-- Checkin / checkout date -->
+				<div class="form-group">
+					<div class="reservation-col">
+						<%= form.label :checkin_date, "Check In", class: 'control-label' %>
+						<%= form.text_field :checkin_date, required: true, class: 'form-control datetimepicker_in' %>
+					</div>
+					<div class="reservation-col">
+						<%= form.label :checkout_date, "Check Out", class: 'control-label' %>
+						<%= form.text_field :checkout_date, required: true, class: 'form-control datetimepicker_out' %>
+					</div>
 				</div>
-				<div class="reservation-col">
-					<%= form.label :checkout_date, "Check Out", class: 'control-label' %>
-					<%= form.text_field :checkout_date, required: true, class: 'form-control datetimepicker_out' %>
+
+				<%= form.hidden_field :listing_id, value: @listing.id %>
+
+				<!-- Guest No -->
+				<div class="form-group">
+				  <%= form.label :number_of_guests, class: 'control-label' %>
+				  <%= form.number_field :guest_no, required: true, class: 'form-control reservation-guest' %>
 				</div>
-			</div>
 
-			<%= form.hidden_field :listing_id, value: @listing.id %>
-
-			<!-- Guest No -->
-			<div class="form-group">
-			  <%= form.label :number_of_guests, class: 'control-label' %>
-			  <%= form.number_field :guest_no, required: true, class: 'form-control reservation-guest' %>
-			</div>
-
-			<!-- Submit button -->
-	    <div class="submit-field form-group">
-		      <%= form.submit 'Book', class: 'btn btn-danger' %>
-	    </div>
+				<!-- Submit button -->
+		    <div class="submit-field form-group">
+			      <%= form.submit 'Book', class: 'btn btn-danger' %>
+		    </div>
+			<% end %>
+		</div>
 		<% end %>
-	</div>
+	<% else %>
+		<%= link_to 'Sign In', sign_in_path %>
+		<span> / </span>
+		<%= link_to 'Sign Up', sign_up_path %>
+		<span>to Make a Reservation</span>
 	<% end %>
 </div>
