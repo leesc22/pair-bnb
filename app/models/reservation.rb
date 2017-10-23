@@ -30,4 +30,8 @@ class Reservation < ApplicationRecord
   def calculate_total_amount
     self.total_amount = self.listing.price_per_night * (self.checkout_date.to_date() - self.checkin_date.to_date()).to_i
   end
+
+  def send_reservation_email_to_host
+    ReservationJob.perform_later(self.user, self.listing.user, self.id)
+  end
 end

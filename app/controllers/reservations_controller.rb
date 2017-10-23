@@ -16,8 +16,11 @@ class ReservationsController < ApplicationController
 	def create
 		@reservation = current_user.reservations.new(reservation_params)
 		if @reservation.save
+			# Change the below to background job
 			# ReservationMailer.booking_email(@reservation.user, @reservation.listing.user, @reservation.id).deliver_now
-			ReservationJob.perform_later(@reservation.user, @reservation.listing.user, @reservation.id)
+			# Move below model logic into model
+			# ReservationJob.perform_later(@reservation.user, @reservation.listing.user, @reservation.id)
+			@reservation.send_reservation_email_to_host
 			redirect_to @reservation
 		else
 			render 'new'
