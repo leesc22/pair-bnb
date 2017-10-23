@@ -20,11 +20,11 @@ class Reservation < ApplicationRecord
   end
 
   def date_cannot_be_overlap
-    Reservation.where(listing_id: listing_id).each do |reservation| 
+    Reservation.where(listing_id: listing_id).each do |reservation|
       if (checkin_date..checkout_date).overlaps?(reservation.checkin_date..reservation.checkout_date)
-        return errors.add(:checkin_date, "can't be overlap with other reservations") 
+        return errors.add(:checkin_date, "can't be overlap with other reservations")
       end
-    end 
+    end
   end
 
   def calculate_total_amount

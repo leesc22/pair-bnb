@@ -9,7 +9,7 @@ class BraintreeController < ApplicationController
   	nonce_from_the_client = params[:checkout_form][:payment_method_nonce]
     @reservation = Reservation.find(params[:checkout_form][:reservation_id])
     @payment = Payment.new(payment_params)
-    
+
   	result = Braintree::Transaction.sale(
   		# :amount => "10.00", # this is currently hardcoded
   		:amount => params[:checkout_form][:amount],
