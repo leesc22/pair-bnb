@@ -20,14 +20,18 @@ class Reservation < ApplicationRecord
   end
 
   def date_cannot_be_overlap
-    Reservation.where(listing_id: listing_id).each do |reservation| 
+    Reservation.where(listing_id: listing_id).each do |reservation|
       if (checkin_date..checkout_date).overlaps?(reservation.checkin_date..reservation.checkout_date)
-        return errors.add(:checkin_date, "can't be overlap with other reservations") 
+        return errors.add(:checkin_date, "can't be overlap with other reservations")
       end
-    end 
+    end
   end
 
   def calculate_total_amount
     self.total_amount = self.listing.price_per_night * (self.checkout_date.to_date() - self.checkin_date.to_date()).to_i
+  end
+
+  def send_reservation_email_to_host
+    ReservationJob.perform_later(self.user, self.listing.user, self.id)
   end
 end

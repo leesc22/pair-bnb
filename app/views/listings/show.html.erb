@@ -10,9 +10,9 @@
 			<% end %>
 			<% unless current_user.customer? || @listing.verified %>
 					<%= link_to 'Verify Listing', verify_listing_path, method: :verify, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
-			<% end %> 
+			<% end %>
 			<br>
-		<% end %> 
+		<% end %>
 
 		<!-- Listing title -->
 		<div class="row">
@@ -33,9 +33,9 @@
 		<!-- Listing address -->
 		<div class="row">
 			<div class="listing-address">
-				<%= @listing.address %> 
+				<%= @listing.address %>
 				<%= @listing.city %> <%= @listing.postcode %>
-				<%= @listing.state %> <%= @listing.country %> 
+				<%= @listing.state %> <%= @listing.country %>
 			</div>
 		</div>
 		

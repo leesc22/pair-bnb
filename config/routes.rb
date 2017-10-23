@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   # Redirect user from Facebook login
   get '/auth/:provider/callback' => 'sessions#create_from_omniauth'
-  
+
   # Listing
   resources :listings
   # custom method to show one user's all listings
