@@ -184,7 +184,7 @@ GEM
       omniauth (~> 1.9)
     pg (0.21.0)
     public_suffix (3.1.1)
-    puma (3.12.1)
+    puma (3.12.2)
     rack (2.0.7)
     rack-protection (2.0.7)
       rack
@@ -328,7 +328,7 @@ DEPENDENCIES
   newrelic_rpm
   omniauth-facebook
   pg (~> 0.18)
-  puma (~> 3.7)
+  puma (~> 3.12)
   rails (~> 5.1.4)
   rails-controller-testing
   rest-client
